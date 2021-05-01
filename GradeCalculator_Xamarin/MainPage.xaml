@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GradeCalculator_Xamarin.MainPage"
+             x:DataType="StackLayout">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3"
+               Padding="24"
+               CornerRadius="0">
+            <Label
+                Text="Dönem Sonu Not Hesabı"
+                HorizontalTextAlignment="Center"
+                TextColor="White"
+                FontSize="30"
+                FontAttributes="Bold" />
+        </Frame>
+
+        <StackLayout Padding="15,10,10,0">
+            <FlexLayout Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        Margin="0,10,0,10">
+                <Label Text="Vize puanı"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       FlexLayout.AlignSelf="Center"
+                       FlexLayout.Basis="35%" />
+                <Entry x:Name="MidtermScore"
+                       Placeholder="Vize puanı"
+                       PlaceholderColor="Olive"
+                       Keyboard="Numeric"
+                       ClearButtonVisibility="WhileEditing"
+                       FlexLayout.Grow="1" />
+            </FlexLayout>
+
+            <FlexLayout Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        Margin="0,10,0,10">
+                <Label Text="Ödev puanı"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       FlexLayout.AlignSelf="Center"
+                       FlexLayout.Basis="35%" />
+                <Entry x:Name="HomeworkScore"
+                       Placeholder="Ödev notu"
+                       PlaceholderColor="Olive"
+                       Keyboard="Numeric"
+                       ClearButtonVisibility="WhileEditing"
+                       FlexLayout.Grow="1" />
+            </FlexLayout>
+
+            <FlexLayout Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        Margin="0,10,0,10">
+                <Label
+                    Text="{Binding Source={x:Reference HomeworkPercentage},
+                              Path=Value,
+                              StringFormat='Ödev: %{0:F0}'}"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    FlexLayout.AlignSelf="Center"
+                    FlexLayout.Basis="35%" />
+                <Slider x:Name="HomeworkPercentage"
+                        Maximum="50"
+                        Minimum="0"
+                        Value="10"
+                        FlexLayout.Grow="1"
+                        ValueChanged="HomeworkPercentage_ValueChanged"
+                        DragCompleted="HomeworkPercentage_DragCompleted" />
+            </FlexLayout>
+
+            <FlexLayout Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        Margin="0,10,0,10">
+                <Label Text="Final puanı"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       FlexLayout.AlignSelf="Center"
+                       FlexLayout.Basis="35%" />
+                <Entry x:Name="FinalScore"
+                       Placeholder="Final puanı"
+                       PlaceholderColor="Olive"
+                       Keyboard="Numeric"
+                       ClearButtonVisibility="WhileEditing"
+                       FlexLayout.Grow="1" />
+            </FlexLayout>
+
+            <FlexLayout Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        Margin="0,10,0,10">
+                <Label
+                    Text="{Binding Source={x:Reference FinalPercentage},
+                              Path=Value,
+                              StringFormat='Final: %{0:F0}'}"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    FlexLayout.AlignSelf="Center"
+                    FlexLayout.Basis="35%" />
+                <Slider x:Name="FinalPercentage"
+                        Maximum="80"
+                        Minimum="50"
+                        Value="60"
+                        FlexLayout.Grow="1"
+                        ValueChanged="FinalPercentage_ValueChanged"
+                        DragCompleted="FinalPercentage_DragCompleted" />
+            </FlexLayout>
+        </StackLayout>
+
+        <Button Text="&#60;&#60; Hesapla &#62;&#62;"
+                FontSize="18"
+                FontAttributes="Bold"
+                HeightRequest="70"
+                TextColor="White"
+                BackgroundColor="CornflowerBlue"
+                Margin="20,25,20,25"
+                Clicked="CalculateButton_Clicked" />
+
+        <FlexLayout Direction="Row"
+                    AlignItems="Center"
+                    JustifyContent="SpaceEvenly"
+                    VerticalOptions="FillAndExpand"
+                    Wrap="Wrap">
+            <Label x:Name="HbnLbl"
+                   Text="HBN: 0"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   BackgroundColor="Crimson"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Padding="0,24,0,24"
+                   FlexLayout.Basis="40%" />
+            <Label x:Name="LetterLbl"
+                   Text="HARF NOTU: (??)"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   BackgroundColor="Crimson"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Padding="0,24,0,24"
+                   FlexLayout.Basis="40%" />
+            <Label x:Name="ResultLbl"
+                   Text="Açıklama: (??)"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   BackgroundColor="#2196F3"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Padding="0,24,0,24"
+                   FlexLayout.Basis="100%" />
+        </FlexLayout>
+    </StackLayout>
+
+</ContentPage>
